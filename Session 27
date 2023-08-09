@@ -1,0 +1,397 @@
+Sorting Algorithms:
+~~~~~~~~~~~~~~~~~~~
+Arranging the elements / objects in ascending order or descending is called as sorting. we can do this sorting using predefined methods or we can implement our own algorithms.
+
+predefined -----> sort() and sorted()
+userdefined ----> bubble sort, selection sort, quick, merge etc...
+
+sort() method:
+--------------
+==> it is applicable only for list objects.
+==> if we want to perform in asc order ------> L.sort()
+==> if we want to perform in desc order -----> L.sort(reverse=True)
+==> if we want to perform sorting based on our kye ---> L.sort(key=fun)
+
+Ex: Sorting integer objects in ascending order
+----------------------------------------------
+L = [10, 14, 12, 15, 13, 11]
+print(L) 
+L.sort()
+print(L)
+
+C:\test>py test.py
+[10, 14, 12, 15, 13, 11]
+[10, 11, 12, 13, 14, 15]
+
+C:\test>
+
+Ex: Sorting integer objects in desending order
+----------------------------------------------
+L = [10, 14, 12, 15, 13, 11]
+print(L) 
+L.sort(reverse=True)
+print(L)
+
+C:\test>py test.py
+[10, 14, 12, 15, 13, 11]
+[15, 14, 13, 12, 11, 10]
+
+C:\test>
+
+Ex: Sorting string objects in ascending order
+----------------------------------------------
+L = ["HHH","BBB","PPP","CCC","KKK","AAA"]
+print(L) 
+L.sort()
+print(L)
+
+C:\test>py test.py
+['HHH', 'BBB', 'PPP', 'CCC', 'KKK', 'AAA']
+['AAA', 'BBB', 'CCC', 'HHH', 'KKK', 'PPP']
+
+Ex: Sorting string objects in descending order
+----------------------------------------------
+L = ["HHH","BBB","PPP","CCC","KKK","AAA"]
+print(L) 
+L.sort(reverse=True)
+print(L)
+
+C:\test>py test.py
+['HHH', 'BBB', 'PPP', 'CCC', 'KKK', 'AAA']
+['PPP', 'KKK', 'HHH', 'CCC', 'BBB', 'AAA']
+
+Ex: sorting string objects based on their length in asc order
+-------------------------------------------------------------
+def fun(s):
+	return len(s)
+
+L = ["Ram","Prabas","Charan","Tarak","Arjun"]
+print(L) 
+L.sort(key=fun)
+print(L)
+
+C:\test>py test.py
+['Ram', 'Prabas', 'Charan', 'Tarak', 'Arjun']
+['Ram', 'Tarak', 'Arjun', 'Prabas', 'Charan']
+
+Ex: sorting string objects based on their length in desc order
+--------------------------------------------------------------
+def fun(s):
+	return len(s)
+
+L = ["Ram","Prabas","Charan","Tarak","Arjun"]
+print(L) 
+L.sort(key=fun,reverse=True)
+print(L)
+
+C:\test>py test.py
+['Ram', 'Prabas', 'Charan', 'Tarak', 'Arjun']
+['Prabas', 'Charan', 'Tarak', 'Arjun', 'Ram']
+
+Ex: sort the student objects based on htno number in asc order
+--------------------------------------------------------------
+class student:
+	
+	def __init__(self,htno,name,percentage):
+		self.htno = htno
+		self.name = name
+		self.percentage = percentage
+
+	def __str__(self):
+		return f"({self.htno}, {self.name}, {self.percentage})"
+
+s1 = student(111,"Prakash",56.78)
+s2 = student(333,"Sekhar",76.13)
+s3 = student(222,"Sarath",98.34)
+s4 = student(666,"Kiran",87.34)
+s5 = student(444,"Durga",66.77)
+
+def fun(s):
+	return s.htno
+
+L = [s1, s2, s3, s4, s5]
+print("BEFORE SORTING")
+for i in L:
+	print(i)
+
+L.sort(key=fun)
+
+print("AFTER SORTING")
+for i in L:
+	print(i)
+
+C:\test>py test.py
+BEFORE SORTING
+(111, Prakash, 56.78)
+(333, Sekhar, 76.13)
+(222, Sarath, 98.34)
+(666, Kiran, 87.34)
+(444, Durga, 66.77)
+AFTER SORTING
+(111, Prakash, 56.78)
+(222, Sarath, 98.34)
+(333, Sekhar, 76.13)
+(444, Durga, 66.77)
+(666, Kiran, 87.34)
+
+Ex: sort the student objects based on htno number in desc order
+--------------------------------------------------------------
+class student:
+	
+	def __init__(self,htno,name,percentage):
+		self.htno = htno
+		self.name = name
+		self.percentage = percentage
+
+	def __str__(self):
+		return f"({self.htno}, {self.name}, {self.percentage})"
+
+s1 = student(111,"Prakash",56.78)
+s2 = student(333,"Sekhar",76.13)
+s3 = student(222,"Sarath",98.34)
+s4 = student(666,"Kiran",87.34)
+s5 = student(444,"Durga",66.77)
+
+def fun(s):
+	return s.htno
+
+L = [s1, s2, s3, s4, s5]
+print("BEFORE SORTING")
+for i in L:
+	print(i)
+
+L.sort(key=fun,reverse=True)
+
+print("AFTER SORTING")
+for i in L:
+	print(i)
+
+C:\test>py test.py
+BEFORE SORTING
+(111, Prakash, 56.78)
+(333, Sekhar, 76.13)
+(222, Sarath, 98.34)
+(666, Kiran, 87.34)
+(444, Durga, 66.77)
+AFTER SORTING
+(666, Kiran, 87.34)
+(444, Durga, 66.77)
+(333, Sekhar, 76.13)
+(222, Sarath, 98.34)
+(111, Prakash, 56.78)
+
+C:\test>
+
+Ex: sort the student objects based on name in asc order
+-------------------------------------------------------
+class student:
+	
+	def __init__(self,htno,name,percentage):
+		self.htno = htno
+		self.name = name
+		self.percentage = percentage
+
+	def __str__(self):
+		return f"({self.htno}, {self.name}, {self.percentage})"
+
+s1 = student(111,"Prakash",56.78)
+s2 = student(333,"Sekhar",76.13)
+s3 = student(222,"Sarath",98.34)
+s4 = student(666,"Kiran",87.34)
+s5 = student(444,"Durga",66.77)
+
+def fun(s):
+	return s.name
+
+L = [s1, s2, s3, s4, s5]
+print("BEFORE SORTING")
+for i in L:
+	print(i)
+
+L.sort(key=fun)
+
+print("AFTER SORTING")
+for i in L:
+	print(i)
+
+C:\test>py test.py
+BEFORE SORTING
+(111, Prakash, 56.78)
+(333, Sekhar, 76.13)
+(222, Sarath, 98.34)
+(666, Kiran, 87.34)
+(444, Durga, 66.77)
+AFTER SORTING
+(444, Durga, 66.77)
+(666, Kiran, 87.34)
+(111, Prakash, 56.78)
+(222, Sarath, 98.34)
+(333, Sekhar, 76.13)
+
+Ex: sort the student objects based on name in desc order
+-------------------------------------------------------
+class student:
+	
+	def __init__(self,htno,name,percentage):
+		self.htno = htno
+		self.name = name
+		self.percentage = percentage
+
+	def __str__(self):
+		return f"({self.htno}, {self.name}, {self.percentage})"
+
+s1 = student(111,"Prakash",56.78)
+s2 = student(333,"Sekhar",76.13)
+s3 = student(222,"Sarath",98.34)
+s4 = student(666,"Kiran",87.34)
+s5 = student(444,"Durga",66.77)
+
+def fun(s):
+	return s.name
+
+L = [s1, s2, s3, s4, s5]
+print("BEFORE SORTING")
+for i in L:
+	print(i)
+
+L.sort(key=fun,reverse=True)
+
+print("AFTER SORTING")
+for i in L:
+	print(i)
+
+C:\test>py test.py
+BEFORE SORTING
+(111, Prakash, 56.78)
+(333, Sekhar, 76.13)
+(222, Sarath, 98.34)
+(666, Kiran, 87.34)
+(444, Durga, 66.77)
+AFTER SORTING
+(333, Sekhar, 76.13)
+(222, Sarath, 98.34)
+(111, Prakash, 56.78)
+(666, Kiran, 87.34)
+(444, Durga, 66.77)
+
+Ex: sort the student objects based on percentage of marks in asc order
+----------------------------------------------------------------------
+class student:
+	
+	def __init__(self,htno,name,percentage):
+		self.htno = htno
+		self.name = name
+		self.percentage = percentage
+
+	def __str__(self):
+		return f"({self.htno}, {self.name}, {self.percentage})"
+
+s1 = student(111,"Prakash",56.78)
+s2 = student(333,"Sekhar",76.13)
+s3 = student(222,"Sarath",98.34)
+s4 = student(666,"Kiran",87.34)
+s5 = student(444,"Durga",66.77)
+
+def fun(s):
+	return s.percentage
+
+L = [s1, s2, s3, s4, s5]
+print("BEFORE SORTING")
+for i in L:
+	print(i)
+
+L.sort(key=fun)
+
+print("AFTER SORTING")
+for i in L:
+	print(i)
+
+C:\test>py test.py
+BEFORE SORTING
+(111, Prakash, 56.78)
+(333, Sekhar, 76.13)
+(222, Sarath, 98.34)
+(666, Kiran, 87.34)
+(444, Durga, 66.77)
+AFTER SORTING
+(111, Prakash, 56.78)
+(444, Durga, 66.77)
+(333, Sekhar, 76.13)
+(666, Kiran, 87.34)
+(222, Sarath, 98.34)
+
+Ex: sort the student objects based on percentage of marks in desc order
+-----------------------------------------------------------------------
+class student:
+	
+	def __init__(self,htno,name,percentage):
+		self.htno = htno
+		self.name = name
+		self.percentage = percentage
+
+	def __str__(self):
+		return f"({self.htno}, {self.name}, {self.percentage})"
+
+s1 = student(111,"Prakash",56.78)
+s2 = student(333,"Sekhar",76.13)
+s3 = student(222,"Sarath",98.34)
+s4 = student(666,"Kiran",87.34)
+s5 = student(444,"Durga",66.77)
+
+def fun(s):
+	return s.percentage
+
+L = [s1, s2, s3, s4, s5]
+print("BEFORE SORTING")
+for i in L:
+	print(i)
+
+L.sort(key=fun,reverse=True)
+
+print("AFTER SORTING")
+for i in L:
+	print(i)
+
+C:\test>py test.py
+BEFORE SORTING
+(111, Prakash, 56.78)
+(333, Sekhar, 76.13)
+(222, Sarath, 98.34)
+(666, Kiran, 87.34)
+(444, Durga, 66.77)
+AFTER SORTING
+(222, Sarath, 98.34)
+(666, Kiran, 87.34)
+(333, Sekhar, 76.13)
+(444, Durga, 66.77)
+(111, Prakash, 56.78)
+
+sorted() function:
+------------------
+it sorts the given data in asc / desc order and returns the data in the form of a list, it wn't modify original data.
+
+Ex:
+---
+L = [1, 5, 2, 4, 3]
+print(L)
+NL=sorted(L)
+print(L)
+print(NL)
+
+C:\test>py test.py
+[1, 5, 2, 4, 3]
+[1, 5, 2, 4, 3]
+[1, 2, 3, 4, 5]
+
+Ex:
+---
+L = [1, 5, 2, 4, 3]
+print(L)
+NL=sorted(L,reverse=True)
+print(L)
+print(NL)
+
+C:\test>py test.py
+[1, 5, 2, 4, 3]
+[1, 5, 2, 4, 3]
+[5, 4, 3, 2, 1]
