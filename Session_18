@@ -1,1 +1,251 @@
+Recursion and Recursion Based Application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Introduction:
+~~~~~~~~~~~~~
+a function / method which is called by itself is called as recursion & the method / function which is invoked in this process is called as recursive method.
 
+Ex:
+---
+def fun():
+	print("Good morning")
+
+fun()
+
+C:\test>py test.py
+Good morning
+
+Ex:
+---
+def fun():
+	print("Good morning")
+	fun()
+
+fun()
+
+Good morning
+Good morning
+Good morning
+Good morning
+RecursionError: maximum recursion depth exceeded while calling a Python object
+
+There are two types of recursion are existed 
+
+1. Finate Recursion
+2. Infinate Recursion
+
+InFinate Recursion
+------------------
+There is no proper condition to stop the recursion, it will keep on executing, hence our internal stack is full it overflows, then python raises error message saying Recursion Error.
+
+Ex:
+---
+def fun():
+	print("Good morning")
+	fun()
+
+fun()
+
+Good morning
+Good morning
+Good morning
+Good morning
+RecursionError: maximum recursion depth exceeded while calling a Python object
+
+Finate Recursion:
+-----------------
+This recursion will stop at cetertain point by giving some condition. this condition is called as base condition. then recursive call will end at some point.
+
+Ex:
+---
+def fun(n):
+	if n==0: #base condition
+		return
+	print("Good morning")
+	fun(n-1)
+
+fun(5)
+
+C:\test>py test.py
+Good morning
+Good morning
+Good morning
+Good morning
+Good morning
+
+C:\test>
+
+base condition:
+---------------
+inside recursion, to stop recursion process at a finate steps we have to construct a condition, such that out function call should terminate at finate steps this condition inside the function is called as base condition. based on our requirement we can change this condition..
+
+
+based on fuction calls we have two types recursions are there
+
+1) direct recursion:
+--------------------
+def fun():
+    -----------
+    -----------
+    -----------
+    fun()
+   
+2) indirection recursion:
+-------------------------
+def fun1():
+    -----------
+    -----------
+    -----------
+    fun2()
+
+def fun2():
+    -----------
+    -----------
+    -----------
+    fun1()
+
+
+When we can go for recursion?
+-----------------------------
+When a problem size is very big and it is made up of small small sub problems then recommended to for recursion.
+
+Applications of recursion
+-------------------------
+binary search algorithm
+quick sort
+merge sort 
+divide and conquer apps
+factorial
+prime 
+linked list
+tree
+graphs etc
+
+
+based on position of recursive statement again it is divided into 2 type
+
+1. tail recursion --------> perfect recursion
+2. non-tail recursion ----> back tracking
+
+tail recursion:
+---------------
+a recursive function is called tail recursion if the function does not contain any statements after recursion call.
+
+Ex:
+---
+def fun(n):
+	if n==0: 
+		return
+	print(n)
+	fun(n-1) #recursion call
+
+fun(5)
+
+C:\test>py test.py
+5
+4
+3
+2
+1
+
+C:\test>
+
+non tail recursion:
+---------------
+a recursive function is called non- tail recursion if the function contain any statements after recursion call.
+
+Ex:
+---
+def fun(n):
+	if n==0: 
+		return
+	fun(n-1) #recursion call
+	print(n)
+
+fun(5)
+
+C:\test>py test.py
+1
+2
+3
+4
+5
+
+C:\test>
+
+01. sum of n natural numbers
+----------------------------
+def fun(n):
+	if n==0:
+		return 0
+	return n+fun(n-1)
+
+print(fun(4)) #0+1+2+3+4=10
+print(fun(5)) #0+1+2+3+4+5=15
+
+C:\test>py test.py
+10
+15
+
+C:\test>
+
+02. factorial of the given number
+---------------------------------
+def fun(n):
+	if n==0:
+		return 1
+	return n*fun(n-1)
+
+print(fun(4)) #1*2*3*4=24
+print(fun(5)) #1*2*3*4*5=120
+
+C:\test>py test.py
+24
+120
+
+C:\test>
+
+03. sum of digits present in the given num
+-------------------------------------------
+def fun(n):
+	if n==0:
+		return 0
+	return n%10+fun(n//10)
+
+print(fun(1283)) #3+8+2+1=14
+
+C:\test>py test.py
+24
+120
+
+C:\test>
+
+04. fibonacci sequence
+----------------------
+def fib(n):
+	if n==0 or n==1:
+		return n
+	return fib(n-1) + fib(n-2)
+
+#0 1 1 2 3 5 8
+for i in range(10):
+	print(fib(i),end=' ') 
+
+C:\test>py test.py
+0 1 1 2 3 5 8 13 21 34
+
+05. a to the power b 
+--------------------
+2*3 ----> 2*2*2 = 8
+2*8 ----> 2*2*2*2*2*2*2*2 = 256
+
+def fun(a,b):
+	if b==0:
+		return 1
+	return a*fun(a,b-1)
+
+
+print(fun(2,0)) #1
+print(fun(2,1)) #2
+print(fun(2,2)) #4
+print(fun(2,3)) #8
+print(fun(2,8)) #256
